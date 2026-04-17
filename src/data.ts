@@ -127,7 +127,6 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: 'patent1',
     title: 'Information propagation analysis method and system based on social media pseudo-environment modeling',
-    authors: 'Tang, X. Y. et al.',
     venue: 'National Invention Patent No. ZL202210645833.8',
     year: '2022',
     categories: ['Public Opinion'],
@@ -137,7 +136,6 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: 'patent2',
     title: 'Hybrid information propagation dynamics model and its information propagation analysis method',
-    authors: 'Tang, X. Y. et al.',
     venue: 'National Invention Patent No. ZL202210218560.9',
     year: '2022',
     categories: ['Public Opinion'],
@@ -148,7 +146,6 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: 'patent3',
     title: 'Public topic propagation evaluation method and system based on modeling',
-    authors: 'Tang, X. Y. et al.',
     venue: 'National Invention Patent No. ZL202110812031.7',
     year: '2021',
     categories: ['Public Opinion'],
