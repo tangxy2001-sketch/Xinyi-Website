@@ -298,7 +298,7 @@ const AboutPage = ({ onPublicationClick }: { onPublicationClick: () => void }) =
           <div className="grid md:grid-cols-2 gap-10 mt-8 pt-8 border-t border-ink">
             <section>
               <div className="flex justify-between items-center mb-4 uppercase font-black text-lg">
-                Recent Publications
+                Recent
                 <button onClick={onPublicationClick} className="text-[10px] underline cursor-pointer lowercase italic">View All &rarr;</button>
               </div>
               <ul className="space-y-4 text-[13px]">
@@ -321,7 +321,7 @@ const AboutPage = ({ onPublicationClick }: { onPublicationClick: () => void }) =
                 </ul>
               </div>
               <div>
-                <h3 className="uppercase font-black text-lg mb-2">Honors</h3>
+                <h3 className="uppercase font-black text-lg mb-2">Honors & Awards</h3>
                 <ul className="text-[13px] space-y-1 italic opacity-80 font-serif">
                   <li>First-Class Academic Scholarship, BNU (2025)</li>
                   <li>Outstanding Graduate in Beijing (2023)</li>
