@@ -45,7 +45,7 @@ const Header = ({ currentPage, setCurrentPage }: { currentPage: string, setCurre
           Xinyi Tang (唐鑫夷)
         </h1>
         <div className="border-y border-ink py-2 uppercase font-mono text-[11px] tracking-[2px] flex justify-between px-4">
-          <span>Phone： +86 19071481945</span>
+          <span>WeChat： Foofoo_tang</span>
           <span className="hidden md:block">Social Computing & Human-AI Interaction</span>
           <span>Email： tangxy2001@gmail.com</span>
         </div>
