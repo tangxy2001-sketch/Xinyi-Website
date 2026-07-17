@@ -12,28 +12,26 @@ import { PUBLICATIONS, type Publication, type ResearchInterest } from './data.ts
 
 const Header = ({ currentPage, setCurrentPage }: { currentPage: string, setCurrentPage: (p: string) => void }) => {
   return (
-    <header className="container mx-auto px-10 py-8 double-border-bottom no-print">
-      <nav className="flex justify-start items-end mb-4 uppercase font-bold text-[13px] tracking-widest">
-        <div className="flex gap-4">
-          {['About', 'Publication', 'Product'].map((page) => (
+    <header className="container mx-auto px-10 py-5 double-border-bottom no-print">
+      <nav aria-label="Primary navigation" className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-widest">
+        {[
+          { id: 'about', label: 'About' },
+          { id: 'publication', label: 'Publications' },
+          { id: 'product', label: 'Product' }
+        ].map(({ id, label }) => {
+          const isCurrent = currentPage === id;
+          return (
             <button
-              key={page}
-              onClick={() => setCurrentPage(page.toLowerCase())}
-              className={`hover:opacity-60 transition-opacity ${
-                currentPage === page.toLowerCase() ? 'underline underline-offset-4' : ''
-              }`}
+              key={id}
+              onClick={() => setCurrentPage(id)}
+              aria-current={isCurrent ? 'page' : undefined}
+              className={`py-1 transition-opacity ${isCurrent ? 'font-bold underline underline-offset-4' : 'opacity-60 hover:opacity-100'}`}
             >
-              {page}
+              {label}
             </button>
-          ))}
-        </div>
+          );
+        })}
       </nav>
-
-      <div className="text-center">
-        <h1 className="font-display text-4xl md:text-7xl font-black tracking-[-2px] leading-none mb-2">
-          Xinyi Tang (唐鑫夷)
-        </h1>
-      </div>
     </header>
   );
 };
@@ -215,7 +213,7 @@ const CVPage = () => {
   );
 };
 
-const AboutPage = ({ onRelatedPublications }: { onRelatedPublications: (interest: ResearchInterest) => void }) => {
+const AboutPage = ({ onRelatedPublications, onPublicationClick, onProductClick }: { onRelatedPublications: (interest: ResearchInterest) => void; onPublicationClick: () => void; onProductClick: () => void }) => {
   return (
     <div className="container mx-auto px-10 pt-8">
       <div className="grid md:grid-cols-[280px_1fr] gap-10 items-start">
@@ -278,19 +276,21 @@ const AboutPage = ({ onRelatedPublications }: { onRelatedPublications: (interest
 
         {/* Right column */}
         <div>
-          <h2 className="text-3xl font-display mb-4 border-b border-ink pb-2 uppercase font-black">Research Interests</h2>
+          <h2 className="text-3xl font-display mb-4 border-b border-ink pb-2 font-black normal-case">Xinyi Tang（唐鑫夷）</h2>
           <div className="text-[15px] leading-relaxed text-justify mb-8 space-y-6 font-serif">
-            <section>
-              <h3 className="text-xl mb-2 normal-case tracking-normal">AI for Families, Family Relationships, and Human-Centered AI Design</h3>
-              <p>I study how human-centered AI can support more equitable family relationships, coordination, and caregiving.</p>
-              <button onClick={() => onRelatedPublications('family-ai')} className="inline-block mt-3 text-[12px] font-bold uppercase tracking-wider underline underline-offset-4 hover:opacity-60">Related publications →</button>
-            </section>
-            <section>
-              <h3 className="text-xl mb-2 normal-case tracking-normal">Social Computing &amp; Public Opinion</h3>
-              <p>I use computational methods to examine information diffusion, public opinion dynamics, and polarization on social media.</p>
-              <button onClick={() => onRelatedPublications('social-computing')} className="inline-block mt-3 text-[12px] font-bold uppercase tracking-wider underline underline-offset-4 hover:opacity-60">Related publications →</button>
-            </section>
+            <p>I recently graduated from BNU and am now preparing PhD applications. I have built research foundations in <strong>HCI</strong> and <strong>Social Computing &amp; Public Opinion</strong>—feel free to <button onClick={onPublicationClick} className="font-bold underline underline-offset-4 hover:opacity-60">explore my publications →</button>.</p>
+            <p>In my spare time, I enjoy joining AI hackathons and exploring how research can become real products—<button onClick={onProductClick} className="font-bold underline underline-offset-4 hover:opacity-60">see what I’m building →</button>.</p>
           </div>
+
+          <section className="mt-8 border-2 border-ink bg-[#eee9dd] p-6 md:p-8 shadow-[5px_5px_0_#1a1a1a]">
+            <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink pb-3 mb-5">
+              <h3 className="font-mono text-sm font-bold uppercase tracking-[0.16em]">📌 Current Research</h3>
+              <span className="font-mono text-[10px] uppercase tracking-widest opacity-70">Summer 2026</span>
+            </div>
+            <div className="space-y-4 text-[14px] leading-relaxed">
+              <p>👨‍👩‍👧 My current research focuses on <strong>AI for Families</strong>: (1) understanding how AI shapes family relationships and everyday care, and (2) building and designing human-centered AI systems that support coordination and more equitable caregiving. I have completed several pilot studies—<button onClick={() => onRelatedPublications('family-ai')} className="font-bold underline underline-offset-4 hover:opacity-60">explore related publications →</button>. Collaborations are welcome! 👏</p>
+            </div>
+          </section>
 
           <section className="mt-8 pt-8 border-t border-ink">
             <h3 className="uppercase font-black text-lg mb-4">Honors &amp; Awards</h3>
@@ -458,7 +458,10 @@ export default function App() {
               <AboutPage onRelatedPublications={(interest) => {
                 setPublicationInterest(interest);
                 setCurrentPage('publication');
-              }} />
+              }} onPublicationClick={() => {
+                setPublicationInterest(null);
+                setCurrentPage('publication');
+              }} onProductClick={() => setCurrentPage('product')} />
             </motion.div>
           ) : currentPage === 'publication' ? (
             <motion.div
