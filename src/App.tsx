@@ -282,12 +282,12 @@ const AboutPage = ({ onRelatedPublications }: { onRelatedPublications: (interest
           <div className="text-[15px] leading-relaxed text-justify mb-8 space-y-6 font-serif">
             <section>
               <h3 className="text-xl mb-2 normal-case tracking-normal">AI for Families, Family Relationships, and Human-Centered AI Design</h3>
-              <p>My research examines the role of AI in family life through an integrated research-and-design approach. I investigate how AI shapes couple and parent–child relationships, and the social and cultural mechanisms underlying these changes. I also translate research insights into family-oriented AI products that support more equitable household and caregiving labor, better family coordination, and collaboration among family members.</p>
+              <p>I study how human-centered AI can support more equitable family relationships, coordination, and caregiving.</p>
               <button onClick={() => onRelatedPublications('family-ai')} className="inline-block mt-3 text-[12px] font-bold uppercase tracking-wider underline underline-offset-4 hover:opacity-60">Related publications →</button>
             </section>
             <section>
               <h3 className="text-xl mb-2 normal-case tracking-normal">Social Computing &amp; Public Opinion</h3>
-              <p>My research uses computational methods to examine information diffusion and public opinion dynamics on social media platforms. I am particularly interested in information-flow structures, the formation and evolution of opinions, and polarization in online networks, drawing on social network analysis, topic modeling, machine learning, and large-scale social media data analysis.</p>
+              <p>I use computational methods to examine information diffusion, public opinion dynamics, and polarization on social media.</p>
               <button onClick={() => onRelatedPublications('social-computing')} className="inline-block mt-3 text-[12px] font-bold uppercase tracking-wider underline underline-offset-4 hover:opacity-60">Related publications →</button>
             </section>
           </div>
@@ -353,7 +353,7 @@ const PublicationPage = ({ selectedInterest }: { selectedInterest: ResearchInter
       <div className="max-w-5xl mx-auto mb-12">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3">Research archive</p>
         <h2 className="text-5xl uppercase font-display font-black mb-5">Publications</h2>
-        <p className="font-serif text-[16px] leading-relaxed max-w-4xl">My research integrates computational and qualitative methods. I have built a foundation in social computing through SCI publications and national invention patents. Extending computational approaches from social-media data with qualitative inquiry, my work in human-AI communication has developed pilot studies for AI for families. Related research is ongoing—collaborations are welcome! 👏</p>
+        <p className="font-serif text-[16px] leading-relaxed max-w-4xl">I integrate computational and qualitative methods to study social computing and human-AI communication, translating research insights into AI for families. Collaborations are welcome! 👏</p>
       </div>
 
       <section className="max-w-5xl mx-auto border-y border-ink py-6 mb-10">
@@ -407,7 +407,7 @@ const ProductPage = () => (
     <div className="max-w-5xl mx-auto mb-12">
       <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3">Product archive</p>
       <h2 className="text-5xl uppercase font-display font-black mb-5">Product</h2>
-      <p className="font-serif text-[16px] leading-relaxed max-w-4xl">I am learning to become an AI full-stack engineer—actively joining AI hackathons and building in public. Drawing on my experience as a product manager, the work below includes industry projects and product demos. I hope to translate research insights into practical product designs. Let's connect! 👏</p>
+      <p className="font-serif text-[16px] leading-relaxed max-w-4xl">I am learning to become an AI full-stack engineer and building in public—explore my product work below or <a href="https://xhslink.com/m/3NnDASauf5E" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:opacity-60">follow my journey on Xiaohongshu ↗</a>. 👏</p>
     </div>
     <section className="max-w-5xl mx-auto border-y border-ink py-6 mb-10 flex items-baseline justify-between gap-4">
       <h3 className="font-mono text-[11px] uppercase tracking-[0.16em]">Selected product work</h3>
