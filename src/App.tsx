@@ -409,11 +409,7 @@ const ProductPage = () => (
       <h2 className="text-5xl uppercase font-display font-black mb-5">Product</h2>
       <p className="font-serif text-[16px] leading-relaxed max-w-4xl">I am learning to become an AI full-stack engineer and building in public—explore my product work below or <a href="https://xhslink.com/m/3NnDASauf5E" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:opacity-60">follow my journey on Xiaohongshu ↗</a>. 👏</p>
     </div>
-    <section className="max-w-5xl mx-auto border-y border-ink py-6 mb-10 flex items-baseline justify-between gap-4">
-      <h3 className="font-mono text-[11px] uppercase tracking-[0.16em]">Selected product work</h3>
-      <span className="text-[12px] italic opacity-60">2 projects</span>
-    </section>
-    <div className="max-w-5xl mx-auto space-y-12">
+    <div className="max-w-5xl mx-auto border-t border-ink pt-8 space-y-12">
       <section className="md:grid md:grid-cols-[120px_1fr] md:gap-10">
         <div className="mb-5 md:mb-0"><h3 className="font-mono text-xl font-bold md:sticky md:top-6">2026</h3></div>
         <article className="group border-b border-ink/10 pb-8">
