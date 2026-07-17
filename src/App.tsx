@@ -278,8 +278,8 @@ const AboutPage = ({ onRelatedPublications, onPublicationClick, onProductClick }
         <div>
           <h2 className="text-3xl font-display mb-4 border-b border-ink pb-2 font-black normal-case">Xinyi Tang（唐鑫夷）</h2>
           <div className="text-[15px] leading-relaxed text-justify mb-8 space-y-6 font-serif">
-            <p>I recently graduated from BNU and am now preparing PhD applications. I have built research foundations in <strong>HCI</strong> and <strong>Social Computing &amp; Public Opinion</strong>—feel free to <button onClick={onPublicationClick} className="font-bold underline underline-offset-4 hover:opacity-60">explore my publications →</button>.</p>
-            <p>In my spare time, I enjoy joining AI hackathons and exploring how research can become real products—<button onClick={onProductClick} className="font-bold underline underline-offset-4 hover:opacity-60">see what I’m building →</button>.</p>
+            <p>I recently graduated from BNU and am now preparing PhD applications. I have built research foundations in <strong>HCI</strong> and <strong>Social Computing</strong>. Feel free to <button onClick={onPublicationClick} className="font-bold underline underline-offset-4 hover:opacity-60">explore my publications →</button>.</p>
+            <p>In my spare time, I enjoy joining AI hackathons and exploring how research can become real products. <button onClick={onProductClick} className="font-bold underline underline-offset-4 hover:opacity-60">See what I’m building →</button>.</p>
           </div>
 
           <section className="mt-8 border-2 border-ink bg-[#eee9dd] p-6 md:p-8 shadow-[5px_5px_0_#1a1a1a]">
