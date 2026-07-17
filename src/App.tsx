@@ -3,21 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Github, 
-  ExternalLink, 
-  Mail, 
-  MapPin, 
-  GraduationCap, 
-  Trophy, 
-  User, 
-  FileText,
-  BookOpen,
-  Award
-} from 'lucide-react';
-import { PUBLICATIONS, Publication } from './data.ts';
+import { FileText } from 'lucide-react';
+import { PUBLICATIONS, type Publication, type ResearchInterest } from './data.ts';
 
 // --- Components ---
 
@@ -26,7 +15,7 @@ const Header = ({ currentPage, setCurrentPage }: { currentPage: string, setCurre
     <header className="container mx-auto px-10 py-8 double-border-bottom no-print">
       <nav className="flex justify-start items-end mb-4 uppercase font-bold text-[13px] tracking-widest">
         <div className="flex gap-4">
-          {['About', 'Publication'].map((page) => (
+          {['About', 'Publication', 'Product'].map((page) => (
             <button
               key={page}
               onClick={() => setCurrentPage(page.toLowerCase())}
@@ -44,21 +33,10 @@ const Header = ({ currentPage, setCurrentPage }: { currentPage: string, setCurre
         <h1 className="font-display text-4xl md:text-7xl font-black tracking-[-2px] leading-none mb-2">
           Xinyi Tang (唐鑫夷)
         </h1>
-        <div className="border-y border-ink py-2 uppercase font-mono text-[11px] tracking-[2px] flex justify-between px-4">
-          <span>WeChat： Foofoo_tang</span>
-          <span className="hidden md:block">Social Computing & Human-AI Interaction</span>
-          <span>Email： tangxy2001@gmail.com</span>
-        </div>
       </div>
     </header>
   );
 };
-
-const Footer = () => (
-  <footer className="container mx-auto px-10 py-6 mt-12 double-border-top flex justify-center font-mono text-[11px] uppercase tracking-widest opacity-80 no-print">
-    <span>Address: No. 1 Xinkang Street, Haidian District, Beijing, China 100000</span>
-  </footer>
-);
 
 const CVPage = () => {
   return (
@@ -237,12 +215,10 @@ const CVPage = () => {
   );
 };
 
-const AboutPage = ({ onPublicationClick }: { onPublicationClick: () => void }) => {
-  const recentPubs = PUBLICATIONS.filter(p => parseInt(p.year) >= 2025).slice(0, 3);
-
+const AboutPage = ({ onRelatedPublications }: { onRelatedPublications: (interest: ResearchInterest) => void }) => {
   return (
     <div className="container mx-auto px-10 pt-8">
-      <div className="grid md:grid-cols-[280px_1fr] gap-10 items-start">
+      <div className="grid md:grid-cols-[320px_1fr] gap-10 items-start">
         {/* Left column */}
         <div className="column-border-right space-y-10">
           <div className="profile-box">
@@ -254,8 +230,10 @@ const AboutPage = ({ onPublicationClick }: { onPublicationClick: () => void }) =
               />
             </div>
             <div className="space-y-1 text-[13px] underline leading-relaxed pb-4">
+              <a href="mailto:tangxy2001@gmail.com" className="block hover:opacity-70">Email: tangxy2001@gmail.com</a>
               <a href="https://github.com/tangxy2001-sketch" target="_blank" rel="noopener noreferrer" className="block hover:opacity-70">GitHub: tangxy2001-sketch</a>
               <a href="https://scholar.google.com/citations?hl=en&tzom=-480&user=eXAGUVgAAAAJ" target="_blank" rel="noopener noreferrer" className="block hover:opacity-70">Google Scholar: Xinyi Tang</a>
+              <span className="block no-underline">WeChat: Foofoo_tang</span>
             </div>
             <a
               href="/Xinyi_Tang_CV.pdf"
@@ -281,134 +259,193 @@ const AboutPage = ({ onPublicationClick }: { onPublicationClick: () => void }) =
               </li>
             </ul>
           </section>
+
+          <section>
+            <h3 className="section-title text-black font-black uppercase text-lg mb-4 border-b border-ink/10 pb-1">Academic Service</h3>
+            <div className="space-y-4 text-[13px] leading-snug">
+              <div><h4 className="font-bold normal-case tracking-normal">Teaching Assistant</h4><p className="italic opacity-70">Vibe Coding with AI, Beijing Normal University (2024 – 2025)</p></div>
+              <div>
+                <h4 className="font-bold normal-case tracking-normal">Reviewer</h4>
+                <ul className="italic opacity-70 space-y-1">
+                  <li><a href="https://www.sciencedirect.com/journal/information-processing-and-management" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-60">Information Processing &amp; Management</a></li>
+                  <li><a href="https://www.sciencedirect.com/journal/physica-d-nonlinear-phenomena" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-60">Physica D: Nonlinear Phenomena</a></li>
+                  <li>ICA 2025 Annual Conference (Human-Machine Communication Interest Group)</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
         </div>
 
         {/* Right column */}
         <div>
-          <h2 className="text-3xl font-display mb-4 border-b border-ink pb-2 uppercase font-black">Societal AI: The New Frontier</h2>
-          <div className="text-[15px] leading-relaxed text-justify mb-8 space-y-4 font-serif">
-            <p className="first-letter:text-5xl first-letter:font-black first-letter:float-left first-letter:mr-2">
-              My research asks how people form emotional and social relationships with AI. I call the current agenda <strong>Societal AI</strong>: a response to the observation that AI is becoming a gatekeeper in domains like mental health, often before anyone is ready for that role. I approach the question across three layers: <strong>(1) understand how people navigate and construct relationships with AI systems; (2) simulate the social ecology around mental health through multi-agent frameworks; and (3) build AI infrastructure that bridges everyday distress and professional care.</strong>
-            </p>
-            <p>
-              Outside research, I enjoy <em className="italic">Vibe Coding</em>: prototyping workflows and product tools with AI. I also served as a Teaching Assistant for the Vibe Coding with AI course at BNU.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-10 mt-8 pt-8 border-t border-ink">
+          <h2 className="text-3xl font-display mb-4 border-b border-ink pb-2 uppercase font-black">Research Interests</h2>
+          <div className="text-[15px] leading-relaxed text-justify mb-8 space-y-6 font-serif">
             <section>
-              <div className="flex justify-between items-center mb-4 uppercase font-black text-lg">
-                Recent
-                <button onClick={onPublicationClick} className="text-[10px] underline cursor-pointer lowercase italic">View All &rarr;</button>
-              </div>
-              <ul className="space-y-4 text-[13px]">
-                {recentPubs.map((pub) => (
-                  <li key={pub.id} className="leading-tight">
-                    <strong className="block mb-1">{pub.title}</strong>
-                    <em className="italic opacity-70 font-serif">{pub.venue}</em>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-xl mb-2 normal-case tracking-normal">AI for Families, Family Relationships, and Human-Centered AI Design</h3>
+              <p>My research examines the role of AI in family life through an integrated research-and-design approach. I investigate how AI shapes couple and parent–child relationships, and the social and cultural mechanisms underlying these changes. I also translate research insights into family-oriented AI products that support more equitable household and caregiving labor, better family coordination, and collaboration among family members.</p>
+              <button onClick={() => onRelatedPublications('family-ai')} className="inline-block mt-3 text-[12px] font-bold uppercase tracking-wider underline underline-offset-4 hover:opacity-60">Related publications →</button>
             </section>
-
-            <section className="space-y-6">
-              <div>
-                <h3 className="uppercase font-black text-lg mb-2">Academic Service</h3>
-                <ul className="text-[13px] space-y-1 italic opacity-80 font-serif">
-                  <li>TA: Vibe Coding with AI (BNU)</li>
-                  <li>Reviewer: Information Processing & Management (SCI TOP)</li>
-                  <li>Reviewer: ICA 2025</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="uppercase font-black text-lg mb-2">Honors & Awards</h3>
-                <ul className="text-[13px] space-y-1 italic opacity-80 font-serif">
-                  <li>First-Class Academic Scholarship, BNU (2025)</li>
-                  <li>Outstanding Graduate in Beijing (2023)</li>
-                  <li>Outstanding Graduate, CUC (2023)</li>
-                  <li>Second Prize, National Math Modeling Contest (2021)</li>
-                  <li>Multiple scholarships, CUC (2019–2023)</li>
-                </ul>
-              </div>
+            <section>
+              <h3 className="text-xl mb-2 normal-case tracking-normal">Social Computing &amp; Public Opinion</h3>
+              <p>My research uses computational methods to examine information diffusion and public opinion dynamics on social media platforms. I am particularly interested in information-flow structures, the formation and evolution of opinions, and polarization in online networks, drawing on social network analysis, topic modeling, machine learning, and large-scale social media data analysis.</p>
+              <button onClick={() => onRelatedPublications('social-computing')} className="inline-block mt-3 text-[12px] font-bold uppercase tracking-wider underline underline-offset-4 hover:opacity-60">Related publications →</button>
             </section>
           </div>
+
+          <section className="mt-8 pt-8 border-t border-ink">
+            <h3 className="uppercase font-black text-lg mb-4">Honors &amp; Awards</h3>
+            <ul className="space-y-3 text-[13px] leading-snug">
+              <li><strong>Master's Thesis Recognized as Outstanding</strong><br /><span className="italic opacity-70">Beijing Normal University (2026)</span></li>
+              <li><strong>Third Prize, Outstanding Paper Award</strong><br /><span className="italic opacity-70">2nd International Research Workshop on Human-Machine Communication, Psychology, and Social Change (2026)</span></li>
+              <li>First-Class Academic Scholarship<br /><span className="italic opacity-70">Beijing Normal University (2025)</span></li>
+              <li>Second-Class Academic Scholarship<br /><span className="italic opacity-70">Beijing Normal University (2024)</span></li>
+              <li><strong>Outstanding Graduate in Beijing</strong><br /><span className="italic opacity-70">Beijing, China (2023)</span></li>
+              <li>Outstanding Graduate<br /><span className="italic opacity-70">Communication University of China (2023)</span></li>
+              <li>Second Prize, National Mathematical Modeling Contest<br /><span className="italic opacity-70">Beijing Division (2021)</span></li>
+              <li>Multiple scholarships<br /><span className="italic opacity-70">Communication University of China (2019–2023)</span><br /><span className="text-[12px] opacity-70">Including First-Class Academic Scholarship, Outstanding Student Leader Scholarship, and others</span></li>
+            </ul>
+          </section>
+
+          <section className="mt-8 pt-8 border-t border-ink">
+            <h3 className="uppercase font-black text-lg mb-4">Latest News</h3>
+            <ul className="space-y-5 text-[13px] leading-relaxed">
+              <li className="md:whitespace-nowrap"><strong>[07/2026]</strong> I was selected for <a href="https://sicss.io/2026/singapore/people" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-60">SICSS-Singapore</a>, hosted by NUS. ✌️</li>
+              <li className="md:whitespace-nowrap"><strong>[06/2026]</strong> I received my master's degree from Beijing Normal University, with my thesis recognized as outstanding. 🎓</li>
+            </ul>
+          </section>
         </div>
       </div>
     </div>
   );
 };
 
-const PublicationPage = () => {
-  const [filter, setFilter] = useState('All');
-  const categories = ['All', 'Societal AI', 'AI-Augmented Social Science Methodology', 'Public Opinion'];
+const RESEARCH_TRACKS: Record<ResearchInterest, { label: string; shortLabel: string; description: string }> = {
+  'family-ai': {
+    label: 'AI for Families, Family Relationships, and Human-Centered AI Design',
+    shortLabel: 'AI for Families',
+    description: 'Pilot studies on human-AI relationships, conversational AI, and human-centered AI design.'
+  },
+  'social-computing': {
+    label: 'Social Computing & Public Opinion',
+    shortLabel: 'Social Computing',
+    description: 'Research on media infrastructure, information diffusion, and public opinion dynamics.'
+  }
+};
 
-  const filteredPubs = filter === 'All' 
-    ? PUBLICATIONS 
-    : PUBLICATIONS.filter(p => p.categories.includes(filter));
+const PublicationPage = ({ selectedInterest }: { selectedInterest: ResearchInterest | null }) => {
+  const [interestFilter, setInterestFilter] = useState<ResearchInterest | 'all'>(selectedInterest ?? 'all');
+
+  useEffect(() => {
+    setInterestFilter(selectedInterest ?? 'all');
+  }, [selectedInterest]);
+
+  const filteredPubs = PUBLICATIONS.filter((pub) =>
+    interestFilter === 'all' || pub.researchInterests.includes(interestFilter)
+  );
+  const groupedPubs = filteredPubs.reduce<Record<string, Publication[]>>((groups, pub) => {
+    (groups[pub.year] ??= []).push(pub);
+    return groups;
+  }, {});
+  const years = Object.keys(groupedPubs).sort((a, b) => Number(b) - Number(a));
 
   return (
-    <div className="container mx-auto px-10 pt-12">
-      <div className="text-center mb-12">
-        <h2 className="text-5xl uppercase font-display font-black mb-4">The Archive</h2>
-        <div className="flex flex-wrap justify-center gap-4 border-y border-ink py-4">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`font-mono text-[11px] uppercase px-4 py-1 border transition-all ${
-                filter === cat 
-                  ? 'bg-ink text-paper border-ink' 
-                  : 'bg-transparent border-ink hover:bg-ink/5'
-              }`}
-            >
-              {cat}
+    <div className="container mx-auto px-10 pt-12 pb-16">
+      <div className="max-w-5xl mx-auto mb-12">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3">Research archive</p>
+        <h2 className="text-5xl uppercase font-display font-black mb-5">Publications</h2>
+        <p className="font-serif text-[16px] leading-relaxed max-w-4xl">My research integrates computational and qualitative methods. I have built a foundation in social computing through SCI publications and national invention patents. Extending computational approaches from social-media data with qualitative inquiry, my work in human-AI communication has developed pilot studies for AI for families. Related research is ongoing—collaborations are welcome! 👏</p>
+      </div>
+
+      <section className="max-w-5xl mx-auto border-y border-ink py-6 mb-10">
+        <div className="flex items-baseline justify-between gap-4 mb-4">
+          <h3 className="font-mono text-[11px] uppercase tracking-[0.16em]">Browse by research interest</h3>
+          <span className="text-[12px] italic opacity-60">{filteredPubs.length} works</span>
+        </div>
+        <div className="grid md:grid-cols-3 gap-3">
+          <button onClick={() => setInterestFilter('all')} className={`text-left border p-5 transition-colors ${interestFilter === 'all' ? 'bg-ink text-paper border-ink' : 'border-ink hover:bg-ink/5'}`}>
+            <span className="block font-mono text-[10px] uppercase tracking-widest mb-2">01 / Overview</span>
+            <span className="block font-display text-xl font-black normal-case tracking-normal">All publications</span>
+            <span className="block text-[13px] leading-relaxed mt-2 opacity-75">Browse the complete record across all research areas.</span>
+          </button>
+          {(Object.entries(RESEARCH_TRACKS) as Array<[ResearchInterest, typeof RESEARCH_TRACKS[ResearchInterest]]>).map(([id, track], index) => (
+            <button key={id} onClick={() => setInterestFilter(id)} className={`text-left border p-5 transition-colors ${interestFilter === id ? 'bg-ink text-paper border-ink' : 'border-ink hover:bg-ink/5'}`}>
+              <span className="block font-mono text-[10px] uppercase tracking-widest mb-2">0{index + 2} / Research path</span>
+              <span className="block font-display text-xl font-black normal-case tracking-normal">{track.shortLabel}</span>
+              <span className="block text-[13px] leading-relaxed mt-2 opacity-75">{track.description}</span>
             </button>
           ))}
         </div>
-      </div>
+        {interestFilter !== 'all' && <p className="mt-4 text-[12px] italic opacity-70">Showing: {RESEARCH_TRACKS[interestFilter].label}</p>}
+      </section>
 
-      <div className="max-w-4xl mx-auto space-y-12 mb-16">
-        {filteredPubs.map((pub) => (
-          <div 
-            key={pub.id} 
-            className="group relative border-b border-ink/10 pb-8 last:border-0"
-          >
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="md:w-32 shrink-0">
-                <span className="font-mono text-[11px] uppercase px-2 py-1 border border-ink font-bold">
-                  {pub.year}
-                </span>
-              </div>
-              <div className="space-y-3 flex-1">
-                <h3 className="text-xl md:text-2xl leading-tight font-display font-black group-hover:italic transition-all uppercase underline underline-offset-4 decoration-transparent group-hover:decoration-ink">
-                  {pub.title}
-                </h3>
-                <p className="text-sm opacity-80">{pub.authors}</p>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="font-serif text-sm italic opacity-70">{pub.venue}</span>
-                  {pub.status && (
-                    <span className="newspaper-border border px-2 py-0.5 text-[10px] uppercase font-bold">
-                      {pub.status}
-                    </span>
-                  )}
-                </div>
-              </div>
+      <div className="max-w-5xl mx-auto space-y-12">
+        {years.map((year, yearIndex) => (
+          <section key={year} className="md:grid md:grid-cols-[120px_1fr] md:gap-10">
+            <div className="mb-5 md:mb-0">
+              <h3 className="font-mono text-xl font-bold md:sticky md:top-6">{year}</h3>
             </div>
-          </div>
+            <div className="space-y-8">
+              {groupedPubs[year].map((pub, publicationIndex) => (
+                <article key={pub.id} className={`group pb-8 ${yearIndex === years.length - 1 && publicationIndex === groupedPubs[year].length - 1 ? '' : 'border-b border-ink/10'}`}>
+                  <h4 className="text-xl md:text-2xl leading-tight font-display font-black normal-case tracking-normal group-hover:italic transition-all">{pub.title}</h4>
+                  {pub.authors && <p className="text-sm opacity-80 mt-3">{pub.authors}</p>}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3"><span className="font-serif text-sm italic opacity-70">{pub.venue}</span>{pub.status && <span className="newspaper-border border px-2 py-0.5 text-[10px] uppercase font-bold">{pub.status}</span>}</div>
+                  {pub.tags && <div className="flex flex-wrap gap-2 mt-4">{pub.tags.map((tag) => <span key={tag} className="border border-ink/30 px-2 py-0.5 font-mono text-[10px] uppercase">{tag}</span>)}</div>}
+                </article>
+              ))}
+            </div>
+          </section>
         ))}
+        {filteredPubs.length === 0 && <p className="text-center italic opacity-70">No publications match this selection.</p>}
       </div>
     </div>
   );
 };
+
+const ProductPage = () => (
+  <div className="container mx-auto px-10 pt-12 pb-16">
+    <div className="max-w-5xl mx-auto mb-12">
+      <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3">Product archive</p>
+      <h2 className="text-5xl uppercase font-display font-black mb-5">Product</h2>
+      <p className="font-serif text-[16px] leading-relaxed max-w-4xl">I am learning to become an AI full-stack engineer—actively joining AI hackathons and building in public. Drawing on my experience as a product manager, the work below includes industry projects and product demos. I hope to translate research insights into practical product designs. Let's connect! 👏</p>
+    </div>
+    <section className="max-w-5xl mx-auto border-y border-ink py-6 mb-10 flex items-baseline justify-between gap-4">
+      <h3 className="font-mono text-[11px] uppercase tracking-[0.16em]">Selected product work</h3>
+      <span className="text-[12px] italic opacity-60">2 projects</span>
+    </section>
+    <div className="max-w-5xl mx-auto space-y-12">
+      <section className="md:grid md:grid-cols-[120px_1fr] md:gap-10">
+        <div className="mb-5 md:mb-0"><h3 className="font-mono text-xl font-bold md:sticky md:top-6">2026</h3></div>
+        <article className="group border-b border-ink/10 pb-8">
+          <div className="flex flex-col md:flex-row gap-4 md:items-start md:justify-between"><div><h4 className="text-xl md:text-2xl leading-tight font-display font-black normal-case tracking-normal group-hover:italic transition-all">NearbyLove × CommunitySense</h4><p className="italic opacity-70 mt-2">Product Manager</p></div><a href="https://nearbylove.github.io/nearby_demo" target="_blank" rel="noopener noreferrer" className="shrink-0 font-mono text-[11px] uppercase underline underline-offset-4 hover:opacity-60">Live demo ↗</a></div>
+          <p className="mt-5 text-[15px] leading-relaxed max-w-3xl">A community-oriented AI service system inspired by Biao Xiang's concept of “the nearby.” It connects residents, property managers, neighborhood committees, and local governments through AI-assisted coordination and privacy-preserving public-space sensing, supporting mutual aid, collective action, and everyday community connection.</p>
+        </article>
+      </section>
+      <section className="md:grid md:grid-cols-[120px_1fr] md:gap-10">
+        <div className="mb-5 md:mb-0"><h3 className="font-mono text-xl font-bold md:sticky md:top-6">2023</h3></div>
+        <article>
+          <h4 className="text-xl md:text-2xl leading-tight font-display font-black normal-case tracking-normal">Social Computing Systems for Governance</h4>
+          <p className="italic opacity-70 mt-2">Product Manager Intern, China Telecom System Integration Co., Ltd.</p>
+          <p className="mt-5 text-[15px] leading-relaxed max-w-3xl">Designed product prototypes and requirements for social-computing systems used by judicial and public-security agencies, translating research on public-opinion dynamics into operational tools for institutional users.</p>
+        </article>
+      </section>
+    </div>
+  </div>
+);
 
 // --- Main App ---
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('about');
+  const [publicationInterest, setPublicationInterest] = useState<ResearchInterest | null>(null);
 
   return (
     <div className="min-h-screen pb-12 overflow-x-hidden">
-      <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Header currentPage={currentPage} setCurrentPage={(page) => {
+        setCurrentPage(page);
+        if (page === 'publication') setPublicationInterest(null);
+      }} />
       
       <main className="relative z-10">
         <AnimatePresence mode="wait">
@@ -419,23 +456,32 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <AboutPage onPublicationClick={() => setCurrentPage('publication')} />
+              <AboutPage onRelatedPublications={(interest) => {
+                setPublicationInterest(interest);
+                setCurrentPage('publication');
+              }} />
             </motion.div>
-          ) : (
+          ) : currentPage === 'publication' ? (
             <motion.div
-              key="publication"
+              key={`publication-${publicationInterest ?? 'all'}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <PublicationPage />
+              <PublicationPage selectedInterest={publicationInterest} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="product"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ProductPage />
             </motion.div>
           )}
         </AnimatePresence>
       </main>
-
-      <Footer />
     </div>
   );
 }
-

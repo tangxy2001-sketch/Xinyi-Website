@@ -1,28 +1,33 @@
+export type ResearchInterest = 'family-ai' | 'social-computing';
+
 export interface Publication {
   id: string;
   title: string;
-  authors: string;
+  authors?: string;
   venue: string;
   year: string;
   categories: string[];
+  researchInterests: ResearchInterest[];
+  tags?: string[];
   type: 'conference' | 'journal' | 'patent' | 'prep';
   link?: string;
   status?: string;
 }
 
 export const PUBLICATIONS: Publication[] = [
-  // 2027
-  {
-    id: 'chi2027',
-    title: 'Imagining the Media Roles of Conversational AI: A Computational Grounded Theory Study with Multi-Agent Frameworks',
-    authors: 'Tang, X. Y., & Zhang, L.',
-    venue: 'Target: CHI 2027',
-    year: '2027',
-    categories: ['Societal AI', 'AI-Augmented Social Science Methodology'],
-    type: 'prep',
-    status: 'In preparation'
-  },
   // 2026
+  {
+    id: 'workshop2026',
+    title: 'Imagining the Media Roles of Conversational AI: A Computational Grounded Theory Study with Multi-Agent Frameworks',
+    authors: 'Tang, X. Y.',
+    venue: '2nd International Research Workshop on Human-Machine Communication, Psychology, and Social Change. Shenzhen, China',
+    year: '2026',
+    categories: ['Human-AI Communication'],
+    researchInterests: ['family-ai'],
+    tags: ['Pilot Study', 'Human-AI Communication'],
+    type: 'conference',
+    status: 'Third Prize, Outstanding Paper Award · manuscript in preparation for CHI 2027'
+  },
   {
     id: 'journal2026',
     title: 'Paradigmatic Integration, Consolidation, and Differentiation: Information Infrastructure and the Paradigm Shifts of Journalism and Communication Studies',
@@ -30,6 +35,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Journalism & Communication Studies',
     year: '2026',
     categories: ['AI-Augmented Social Science Methodology'],
+    researchInterests: ['social-computing'],
+    tags: ['Media Infrastructure'],
     type: 'journal',
     status: 'Under review, 3rd round, CSSCI TOP'
   },
@@ -40,7 +47,9 @@ export const PUBLICATIONS: Publication[] = [
     authors: 'Tang, X. Y., Lu, J. L., Zhang, L., Wu, Y., & Xu, X. K.',
     venue: 'Human-Machine Communication Division, 2025 ICA Annual Conference. Denver, USA',
     year: '2025',
-    categories: ['Societal AI'],
+    categories: ['Human-AI Communication'],
+    researchInterests: ['family-ai'],
+    tags: ['Pilot Study', 'Human-AI Communication'],
     type: 'conference'
   },
   {
@@ -50,19 +59,12 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Expert Systems with Applications, 277, 127262',
     year: '2025',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'journal',
     status: 'SCI TOP'
   },
   // 2024
-  {
-    id: 'conf2024',
-    title: 'Competition, symbiosis and collaborative attenuation: Paradigm transformation of journalism and communication in the 5G era',
-    authors: 'Tang, X. Y., & Zhang, L.',
-    venue: '2024 Annual Conference of Intelligent and Computational Communication. Zhejiang, China',
-    year: '2024',
-    categories: ['AI-Augmented Social Science Methodology'],
-    type: 'conference'
-  },
   {
     id: 'sci2024',
     title: 'Coupled dynamics of information propagation and emotion influence: Emerging emotion clusters for public health emergency messages on the Chinese Sina Microblog',
@@ -70,6 +72,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Physica A: Statistical Mechanics and its Applications, 639, 129630',
     year: '2024',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'journal',
     status: 'SCI Q2'
   },
@@ -81,6 +85,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Journal of Theoretical Biology, 566, 111480',
     year: '2023',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'journal',
     status: 'SCI Q3'
   },
@@ -92,6 +98,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: '2022 7th International Conference on Cloud Computing and Big Data Analytics. Chengdu, China',
     year: '2022',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'conference'
   },
   {
@@ -101,6 +109,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Mathematical Biosciences and Engineering, 19(11), 11380–11398',
     year: '2022',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'journal',
     status: 'SCI Q2'
   },
@@ -111,6 +121,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Applied Mathematics Letters, 133, 108231',
     year: '2022',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'journal',
     status: 'SCI TOP'
   },
@@ -121,6 +133,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'Applied Mathematics Letters, 127, 107819',
     year: '2022',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Public Opinion'],
     type: 'journal',
     status: 'SCI TOP'
   },
@@ -130,6 +144,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'National Invention Patent No. ZL202210645833.8',
     year: '2022',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Patent', 'Public Opinion'],
     type: 'patent',
     status: 'Granted 2022'
   },
@@ -139,6 +155,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'National Invention Patent No. ZL202210218560.9',
     year: '2022',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Patent', 'Public Opinion'],
     type: 'patent',
     status: 'Granted 2022'
   },
@@ -149,6 +167,8 @@ export const PUBLICATIONS: Publication[] = [
     venue: 'National Invention Patent No. ZL202110812031.7',
     year: '2021',
     categories: ['Public Opinion'],
+    researchInterests: ['social-computing'],
+    tags: ['Patent', 'Public Opinion'],
     type: 'patent',
     status: 'Granted 2021'
   }
