@@ -218,7 +218,7 @@ const CVPage = () => {
 const AboutPage = ({ onRelatedPublications }: { onRelatedPublications: (interest: ResearchInterest) => void }) => {
   return (
     <div className="container mx-auto px-10 pt-8">
-      <div className="grid md:grid-cols-[320px_1fr] gap-10 items-start">
+      <div className="grid md:grid-cols-[280px_1fr] gap-10 items-start">
         {/* Left column */}
         <div className="column-border-right space-y-10">
           <div className="profile-box">
@@ -233,7 +233,6 @@ const AboutPage = ({ onRelatedPublications }: { onRelatedPublications: (interest
               <a href="mailto:tangxy2001@gmail.com" className="block hover:opacity-70">Email: tangxy2001@gmail.com</a>
               <a href="https://github.com/tangxy2001-sketch" target="_blank" rel="noopener noreferrer" className="block hover:opacity-70">GitHub: tangxy2001-sketch</a>
               <a href="https://scholar.google.com/citations?hl=en&tzom=-480&user=eXAGUVgAAAAJ" target="_blank" rel="noopener noreferrer" className="block hover:opacity-70">Google Scholar: Xinyi Tang</a>
-              <span className="block no-underline">WeChat: Foofoo_tang</span>
             </div>
             <a
               href="/Xinyi_Tang_CV.pdf"
