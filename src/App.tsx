@@ -309,8 +309,8 @@ const AboutPage = ({ onRelatedPublications, onPublicationClick, onProductClick }
           <section className="mt-8 pt-8 border-t border-ink">
             <h3 className="uppercase font-black text-lg mb-4">Latest News</h3>
             <ul className="space-y-5 text-[13px] leading-relaxed">
-              <li className="md:whitespace-nowrap"><strong>[07/2026]</strong> I was selected for <a href="https://sicss.io/2026/singapore/people" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-60">SICSS-Singapore</a>, hosted by NUS. ✌️</li>
-              <li className="md:whitespace-nowrap"><strong>[06/2026]</strong> I received my master's degree from Beijing Normal University, with my thesis recognized as outstanding. 🎓</li>
+              <li><strong>[07/2026]</strong> I was selected for <a href="https://sicss.io/2026/singapore/people" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-60">SICSS-Singapore</a>, hosted by NUS. ✌️</li>
+              <li><strong>[06/2026]</strong> I received my master's degree from Beijing Normal University, with my thesis recognized as outstanding. 🎓</li>
             </ul>
           </section>
         </div>
